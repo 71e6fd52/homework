@@ -24,6 +24,8 @@ File.open(tmp, 'w') { |f| f.puts json }
 puts `curl --verbose -X PUT -d @#{tmp} #{uri}`
 `rm -f #{tmp}`
 
+`./todolist.rb`
+
 `./create.rb | pandoc -s -t html >index.html`
 `git add .`
 `git commit -m "#{Time.now.strftime '%Y%m%d'}"`
