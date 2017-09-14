@@ -26,23 +26,23 @@ t = {
     'j' => '核心素养读本·经典文学导读'
   },
   'M' => {
-    ' ' => '作业本',
+    '-' => '作业本',
     '+' => '全品',
     'j' => '尖子生'
   },
   'E' => {
-    ' ' => '作业本',
+    '-' => '作业本',
     '+' => '励耘新同步',
     'l' => '励耘新同步',
     'b' => '背诵',
     'k' => '课时特训'
   },
   'S' => {
-    ' ' => '作业本',
+    '-' => '作业本',
     '+' => '全品'
   },
   'H' => {
-    ' ' => '作业本',
+    '-' => '作业本',
     '+' => '同步练习',
     't' => '同步练习'
   }
@@ -73,9 +73,10 @@ File.open(time.strftime('%Y%m%d.hw'), 'r') do |file|
     print '1. ' unless machine
     first = line[0]
     other = line[1..-1]
+    first = '-' if first == ' '
     name = type[first] if type
     if name.nil?
-      puts "#{line}"
+      puts line
       next
     end
     word = other.split(/\s/)
