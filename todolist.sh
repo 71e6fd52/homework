@@ -6,6 +6,8 @@ then
   exit 1
 fi
 
+[[ $(date +%u) > 4 ]] && date='Fri' || date='today'
+
 curl 'https://todoist.com/api/v7/sync' \
   -d token=65062a4daa6bf9a362447187dacf8af40f56617b \
   -d commands='[
