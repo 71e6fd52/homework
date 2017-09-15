@@ -55,49 +55,47 @@ machine.freeze
 type = nil
 time = Time.now
 puts time.strftime('# %Y年%m月%d日') unless machine
-File.open(time.strftime('%Y%m%d.hw'), 'r') do |file|
-  file.to_a.each do |line|
-    next if line =~ /^\./
-    if (m = line.match(/^[CMESHI]/))
-      typename = m[0]
-      type = t[typename]
-      puts unless machine
-      print '## ' unless machine
-      if machine
-        puts typename
-      else
-        puts cname[typename]
-      end
-      next
-    end
-    print '1. ' unless machine
-    first = line[0]
-    other = line[1..-1]
-    first = '-' if first == ' '
-    name = type[first] if type
-    if name.nil?
-      puts line
-      next
-    end
-    word = other.split(/\s/)
-    code = word.shift if word[0] =~ /^[ABab12]$/
-    unless word.shift == 'p'
-      name += '》' if name =~ /^《/
-      puts "#{name}#{other}"
-      next
-    end
-
-    code ||= ''
-    code += '》' if name =~ /^《/
-
-    if word.size == 3 && word[1] == '-'
-      puts "#{name}#{code} 第 #{word[0]} - #{word[2]} 页"
-    elsif word.find { |w| w =~ /[^\d]/ }
-      puts "#{name}#{word.join ' '}"
-    elsif word.size == 1
-      puts "#{name}#{code} 第 #{word[0]} 页"
+File.open(time.strftime('%Y%m%d.hw'), 'r').each_line do |line|
+  next if line =~ /^\./
+  if (m = line.match(/^[CMESHI]/))
+    typename = m[0]
+    type = t[typename]
+    puts unless machine
+    print '## ' unless machine
+    if machine
+      puts typename
     else
-      puts "#{name}#{code} 第 #{word.join ', '} 页"
+      puts cname[typename]
     end
+    next
   end
-end
+  print '1. ' unless machine
+  first = line[0]
+  other = line[1..-1]
+  first = '-' if first == ' '
+  name = type[first] if type
+  if name.nil?
+    puts line
+    next
+  end
+  word = other.split(/\s/)
+  code = word.shift if word[0] =~ /^[AB12]$/
+  unless word.shift == 'p'
+    name += '》' if name =~ /^《/
+    puts "#{name}#{other}"
+    next
+  end
+
+  code ||= ''
+  code += '》' if name =~ /^《/
+
+  if word.size == 3 && word[1] == '-'
+    puts "#{name}#{code} 第 #{word[0]} - #{word[2]} 页"
+  elsif word.find { |w| w =~ /[^\d]/ }
+    puts "#{name}#{word.join ' '}"
+  elsif word.size == 1
+    puts "#{name}#{code} 第 #{word[0]} 页"
+  else
+    puts "#{name}#{code} 第 #{word.join ', '} 页"
+  end
+end.close
