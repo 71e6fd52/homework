@@ -81,6 +81,7 @@ File.open(time.strftime('%Y%m%d.hw'), 'r').each_line do |line|
   end
   word = other.split(/\s/)
   code = word.shift if word[0] =~ /^[AB12]$/
+  word.shift if word[0] == ''
   unless word.shift == 'p'
     name += '》' if name =~ /^《/
     puts "#{name}#{other}"
