@@ -2,7 +2,7 @@
 
 require 'json'
 
-body = `./create.rb | pandoc -t plain | sed '/^$/d'`
+body = `./create.rb | pandoc -t plain | sed '/^$/d ; /CC/ {x; p; x;}'`
 body = '-name ' + body
 html = `./create.rb | pandoc -t html`
 json = {
