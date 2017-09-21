@@ -30,3 +30,5 @@ puts `curl --verbose -X PUT -d @#{tmp} #{uri}`
 `git add .`
 `git commit -m "#{Time.now.strftime '%Y%m%d'}"`
 `git push`
+
+return unless `./create.rb | pandoc -t plain | sed '/^$/d ; /CC/ {x; p; x;}' | wc -m`.to_i > 240
