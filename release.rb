@@ -31,7 +31,7 @@ puts `curl --verbose -X PUT -d @#{tmp} #{uri}`
 `git commit -m "#{Time.now.strftime '%Y%m%d'}"`
 `git push`
 
-return unless \
+exit unless \
   `./create.rb |
   pandoc -t plain |
   sed '/^$/d ; /CC/ {x; p; x;}' |
