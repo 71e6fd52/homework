@@ -13,30 +13,33 @@ ID = {
 date = Time.now.strftime('%u').to_i > 4 && 'Sun' || 'today'
 date.freeze
 
-@class = '2161861537'
+commands = []
+subject = '2161861537'
+
 homework = IO.popen './create.rb -m'
 homework.each_line do |line|
   line.chomp!
   if line =~ /^[A-Z]$/
-    @class = ID[line]
+    subject = ID[line]
     next
   end
-  puts "#{@class}: #{line}"
+  puts "#{subject}: #{line}"
 
-  commands = {
+  command = {
     type: 'item_add',
     temp_id: `uuidgen`.strip,
     uuid: `uuidgen`.strip,
     args: {
-      project_id: @class,
+      project_id: subject,
       content: line,
       date_string: date
     }
   }
 
-  commands[:args]['priority'] = 4 if @class == ID['H'] && line =~ /^《作业本/
-
-  `curl 'https://todoist.com/api/v7/sync' \
-    -d token=65062a4daa6bf9a362447187dacf8af40f56617b \
-    -d commands='[#{commands.to_json}]'`
+  commands << command
 end
+
+puts commands.to_json
+`curl 'https://todoist.com/api/v7/sync' \
+  -d token=65062a4daa6bf9a362447187dacf8af40f56617b \
+  -d commands='#{commands.to_json}'`
