@@ -42,7 +42,7 @@ subject = ID['N']
 homework = IO.popen './create.rb -m'
 homework.each_line do |line|
   line.chomp!
-  if ID.keys? line
+  if ID.key? line
     subject = ID[line]
     next
   end
