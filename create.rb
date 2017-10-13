@@ -104,6 +104,10 @@ File.open(time.strftime('%Y%m%d.hw'), 'r').each_line do |line|
 end.close
 
 puts unless machine
-puts <<END unless machine
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />本作品采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> 进行许可。
-END
+puts '本作品同时通过 ' \
+  '[Creative Commons Attribution-ShareAlike 4.0 International License]' \
+  '(http://creativecommons.org/licenses/by-sa/4.0/), ' \
+  '[GNU Affero General Public License]' \
+  '(https://www.gnu.org/licenses/agpl.html), ' \
+  '[GNU Free Documentation License](https://www.gnu.org/licenses/fdl.html)' \
+  ' 授权'
