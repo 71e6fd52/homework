@@ -110,4 +110,4 @@ puts '本作品同时通过 ' \
   '[GNU Affero General Public License]' \
   '(https://www.gnu.org/licenses/agpl.html), ' \
   '[GNU Free Documentation License](https://www.gnu.org/licenses/fdl.html)' \
-  ' 授权'
+  ' 许可。'
