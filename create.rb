@@ -47,6 +47,9 @@ t = {
     '+' => '《同步练习',
     't' => '《同步练习',
     'j' => '《精彩练习'
+  },
+  'I' => {
+    '-' => '《作业本'
   }
 }
 
@@ -56,6 +59,7 @@ machine = ARGV.include? '-m'
 machine.freeze
 type = nil
 time = Time.now
+puts '# **震惊！！99%的中国人都不知道，嘉善四中某班回家作业的秘密竟然是……**' unless machine
 puts time.strftime('# %Y年%m月%d日') unless machine
 File.open(time.strftime('%Y%m%d.hw'), 'r').each_line do |line|
   next if line =~ /^\./
