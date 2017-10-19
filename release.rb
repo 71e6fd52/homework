@@ -17,7 +17,7 @@ end
 uri = 'https://matrix.org:8448' \
   '/_matrix/client/r0/rooms/' \
   '%21pQhVQwYLoQvQELrEpI%3Amatrix.org/send/m.room.message/'
-uri += Time.now.to_i.to_s
+uri += `uuidgen`.strip
 uri += '?access_token=' + @access_token
 tmp = `mktemp`.chomp
 File.open(tmp, 'w') { |f| f.puts json }
@@ -34,9 +34,14 @@ puts `curl --verbose -X PUT -d @#{tmp} #{uri}`
 exit unless \
   `./create.rb |
   pandoc -t plain |
-  sed '/^$/d ; /CC/ {x; p; x;}' |
+  sed '/^$/d ; /本作品/ {x; p; x;}' |
   wc -m`.to_i > 240
 
+uri = 'https://matrix.org:8448' \
+  '/_matrix/client/r0/rooms/' \
+  '%21pQhVQwYLoQvQELrEpI%3Amatrix.org/send/m.room.message/'
+uri += `uuidgen`.strip
+uri += '?access_token=' + @access_token
 json = {
   msgtype: 'm.text',
   body: '-name 本次作业过长，请至 #1b123886:matrix.org 或 ' \
