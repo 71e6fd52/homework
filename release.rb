@@ -30,24 +30,3 @@ puts `curl --verbose -X PUT -d @#{tmp} #{uri}`
 `git add .`
 `git commit -m "#{Time.now.strftime '%Y%m%d'}"`
 `git push`
-
-exit unless \
-  `./create.rb |
-  pandoc -t plain |
-  sed '/^$/d ; /本作品/ {x; p; x;}' |
-  wc -m`.to_i > 240
-
-uri = 'https://matrix.org:8448' \
-  '/_matrix/client/r0/rooms/' \
-  '%21pQhVQwYLoQvQELrEpI%3Amatrix.org/send/m.room.message/'
-uri += `uuidgen`.strip
-uri += '?access_token=' + @access_token
-json = {
-  msgtype: 'm.text',
-  body: '-name 本次作业过长，请至 #1b123886:matrix.org 或 ' \
-  'https://71e6fd52.github.io/homework 查看'
-}.to_json
-tmp = `mktemp`.chomp
-File.open(tmp, 'w') { |f| f.puts json }
-puts `curl --verbose -X PUT -d @#{tmp} #{uri}`
-`rm -f #{tmp}`
