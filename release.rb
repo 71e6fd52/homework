@@ -3,7 +3,7 @@
 require 'json'
 
 body = `./create.rb | pandoc -t plain | sed '/^$/d ; /本作品/ {x; p; x;}'`
-body = '-name' + body
+body = '-name ' + body
 html = `./create.rb | pandoc -t html`
 json = {
   msgtype: 'm.text',
