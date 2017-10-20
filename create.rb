@@ -47,14 +47,11 @@ t = {
     '+' => '《同步练习',
     't' => '《同步练习',
     'j' => '《精彩练习'
-  },
-  'I' => {
-    '-' => '《作业本',
-    'j' => '《精彩练习'
   }
 }
 
 t.each_value { |a| a.merge! normal }
+t['I'] = t['H']
 
 machine = ARGV.include? '-m'
 machine.freeze
