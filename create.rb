@@ -109,4 +109,4 @@ puts '本作品同时通过 ' \
   '[Creative Commons Attribution-ShareAlike 4.0 International License]' \
   '(http://creativecommons.org/licenses/by-sa/4.0/) 和 ' \
   '[GNU Free Documentation License](https://www.gnu.org/licenses/fdl.html)' \
-  ' 许可。'
+  ' 许可。' unless machine
