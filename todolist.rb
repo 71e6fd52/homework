@@ -64,6 +64,6 @@ homework.each_line do |line|
 end
 
 puts commands.to_json
-`curl 'https://todoist.com/api/v7/sync' \
+puts `curl 'https://todoist.com/api/v7/sync' \
   -d token=65062a4daa6bf9a362447187dacf8af40f56617b \
   -d commands='#{commands.to_json}'`
