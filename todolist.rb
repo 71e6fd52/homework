@@ -34,9 +34,6 @@ puts commands.to_json
   -d token=65062a4daa6bf9a362447187dacf8af40f56617b \
   -d commands='#{commands.to_json}'`
 
-date = Time.now.strftime('%u').to_i > 4 && 'Sun' || 'today'
-date.freeze
-
 commands = []
 subject = ID['N']
 
@@ -55,8 +52,7 @@ homework.each_line do |line|
     uuid: `uuidgen`.strip,
     args: {
       project_id: subject,
-      content: line,
-      date_string: date
+      content: line
     }
   }
 
