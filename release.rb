@@ -11,7 +11,7 @@ json = {
   formatted_body: html,
   format: 'org.matrix.custom.html'
 }.to_json
-File.open File.join(ENV['HOME'], '.config', 'matrix-qq', 'token') do |f|
+File.open File.join(ENV['HOME'], '.config', 'matrix', 'token') do |f|
   @access_token = f.gets
 end
 uri = 'https://matrix.org:8448' \
