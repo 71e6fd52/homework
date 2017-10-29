@@ -29,12 +29,6 @@ commands = [{
   args: { ids: delete }
 }]
 
-puts commands.to_json
-`curl 'https://todoist.com/api/v7/sync' \
-  -d token=65062a4daa6bf9a362447187dacf8af40f56617b \
-  -d commands='#{commands.to_json}'`
-
-commands = []
 subject = ID['N']
 
 homework = IO.popen './create.rb -m'
