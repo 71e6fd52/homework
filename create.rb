@@ -104,9 +104,9 @@ File.open(time.strftime('%Y%m%d.hw'), 'r').each_line do |line|
   end
 end.close
 
-puts unless machine
-puts '本作品同时通过 ' \
-  '[Creative Commons Attribution-ShareAlike 4.0 International License]' \
-  '(http://creativecommons.org/licenses/by-sa/4.0/) 和 ' \
-  '[GNU Free Documentation License](https://www.gnu.org/licenses/fdl.html)' \
-  ' 许可。' unless machine
+unless machine
+  puts
+  puts '本作品通过 ' \
+    '[Creative Commons Attribution-ShareAlike 4.0 International License]' \
+    '(http://creativecommons.org/licenses/by-sa/4.0/) 许可。'
+end
