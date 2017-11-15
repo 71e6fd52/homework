@@ -2,8 +2,10 @@
 
 require 'json'
 
-body = `./create.rb | pandoc -t plain | sed '/^$/d ; /本作品/ {x; p; x;}'`
-body = '-name ' + body
+system './create.rb | pandoc -s -t html >index.html'
+
+body = `lynx -dump -width=40 index.html`
+body = "-name\n" + body
 html = `./create.rb | pandoc -t html`
 json = {
   msgtype: 'm.text',
@@ -21,10 +23,9 @@ uri += `uuidgen`.strip
 uri += '?access_token=' + @access_token
 tmp = `mktemp`.chomp
 File.open(tmp, 'w') { |f| f.puts json }
-puts `curl --verbose -X PUT -d @#{tmp} #{uri}`
-`rm -f #{tmp}`
+system "curl --verbose -X PUT -d @#{tmp} #{uri}"
+system "rm -f #{tmp}"
 
-`./create.rb | pandoc -s -t html >index.html`
-`git add .`
-`git commit -m "#{Time.now.strftime '%Y%m%d'}"`
-`git push`
+system 'git add .'
+system %(git commit -m "#{Time.now.strftime '%Y%m%d'}")
+system 'git push'
