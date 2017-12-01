@@ -29,3 +29,5 @@ system "rm -f #{tmp}"
 system 'git add .'
 system %(git commit -m "#{Time.now.strftime '%Y%m%d'}")
 system 'git push'
+
+system 'pandoc -t docx index.html -o index.docx'
