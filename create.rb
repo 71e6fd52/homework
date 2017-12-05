@@ -106,6 +106,9 @@ end.close
 
 unless machine
   puts
+  puts '----'
+  puts '那就作业是某人打的吧就'
+  puts
   puts '本作品通过 ' \
     '[Creative Commons Attribution-ShareAlike 4.0 International License]' \
     '(http://creativecommons.org/licenses/by-sa/4.0/) 许可。'
