@@ -27,11 +27,12 @@ t = {
     '-' => '《作业本',
     '+' => '《全品',
     'j' => '《尖子生',
+    'l' => '《励耘新同步',
+    'a' => '《励耘新同步·作业本',
     'z' => '《走进重高'
   },
   'E' => {
     '-' => '《作业本',
-    '+' => '《励耘新同步',
     'l' => '《励耘新同步',
     'b' => '背诵',
     'k' => '《课时特训',
@@ -107,9 +108,9 @@ end.close
 unless machine
   puts
   puts '----'
-  puts '那就作业是某人打的吧就'
+  # puts '联合甩®荣誉出品'
   puts
   puts '本作品通过 ' \
-    '[Creative Commons Attribution-ShareAlike 4.0 International License]' \
+    '[Creative Commons Attribution-ShareAlike 4·.0 International License]' \
     '(http://creativecommons.org/licenses/by-sa/4.0/) 许可。'
 end
