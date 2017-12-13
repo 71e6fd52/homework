@@ -111,6 +111,6 @@ unless machine
   # puts '联合甩®荣誉出品'
   puts
   puts '本作品通过 ' \
-    '[Creative Commons Attribution-ShareAlike 4.0 International License]' \
-    '(http://creativecommons.org/licenses/by-sa/4.0/) 许可。'
+    '[The GNU Affero General Public License]' \
+    '(http://www.gnu.org/licenses/agpl.html) 许可。'
 end
