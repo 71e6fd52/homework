@@ -54,32 +54,43 @@ t = {
 t.each_value { |a| a.merge! normal }
 t['I'] = t['H']
 
+def put_head
+  puts Time.now.strftime('# %Y年%m月%d日')
+end
+
+def put_end(t = false)
+  puts
+  puts '----'
+  puts '联合甩®荣誉出品', nil if t
+  puts '本作品通过 ' \
+    '[The GNU Affero General Public License]' \
+    '(http://www.gnu.org/licenses/agpl.html) 许可。'
+end
+
 machine = ARGV.include? '-m'
 machine.freeze
 ARGV.delete '-m'
 type = nil
-time = Time.now
-puts time.strftime('# %Y年%m月%d日') unless machine
-# puts '1. 带排球' if time.wday == 2
+put_head unless machine
+# puts '1. 带排球' if Time.now.wday == 2
 filename = ARGV.first
-filename ||= time.strftime('%Y%m%d.hw')
+filename ||= Time.now.strftime('%Y%m%d.hw')
 File.open(filename, 'r').each_line do |line|
-  next if line =~ /^\./
+  next if line =~ /^\./ # ignore comment
   if (m = line.match(/^[CMESHI]/))
     typename = m[0]
     type = t[typename]
-    puts unless machine
-    print '## ' unless machine
     if machine
       puts typename
     else
-      puts cname[typename]
+      puts nil, "## #{cname[typename]}"
     end
     next
   end
   print '1. ' unless machine
   first = line[0]
   other = line[1..-1]
+
   first = '-' if first == ' '
   name = type[first] if type
   if name.nil?
@@ -95,26 +106,18 @@ File.open(filename, 'r').each_line do |line|
     next
   end
 
-  code ||= ''
-  code += '》' if name =~ /^《/
+  name = "#{name}#{code}"
+  name += '》' if name =~ /^《/
 
   if word.size == 3 && word[1] == '-'
-    puts "#{name}#{code} 第 #{word[0]} - #{word[2]} 页"
+    puts "#{name} 第 #{word[0]} - #{word[2]} 页"
   elsif word.find { |w| w =~ /[^\d]/ }
     puts "#{name}#{word.join ' '}"
   elsif word.size == 1
-    puts "#{name}#{code} 第 #{word[0]} 页"
+    puts "#{name} 第 #{word[0]} 页"
   else
-    puts "#{name}#{code} 第 #{word.join ', '} 页"
+    puts "#{name} 第 #{word.join ', '} 页"
   end
 end.close
 
-unless machine
-  puts
-  puts '----'
-  # puts '联合甩®荣誉出品'
-  puts
-  puts '本作品通过 ' \
-    '[The GNU Affero General Public License]' \
-    '(http://www.gnu.org/licenses/agpl.html) 许可。'
-end
+put_end unless machine
