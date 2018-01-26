@@ -56,11 +56,14 @@ t['I'] = t['H']
 
 machine = ARGV.include? '-m'
 machine.freeze
+ARGV.delete '-m'
 type = nil
 time = Time.now
 puts time.strftime('# %Y年%m月%d日') unless machine
 # puts '1. 带排球' if time.wday == 2
-File.open(time.strftime('%Y%m%d.hw'), 'r').each_line do |line|
+filename = ARGV.first
+filename ||= time.strftime('%Y%m%d.hw')
+File.open(filename, 'r').each_line do |line|
   next if line =~ /^\./
   if (m = line.match(/^[CMESHI]/))
     typename = m[0]

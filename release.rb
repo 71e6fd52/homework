@@ -2,11 +2,12 @@
 
 require 'json'
 
-system './create.rb | pandoc -s -t html >index.html'
+create = "./create.rb #{ARGV.join ' '}"
+system "#{create} | pandoc -s -t html >index.html"
 
 body = `lynx -dump -width=40 index.html`
 body = "-name\n" + body
-html = `./create.rb | pandoc -t html`
+html = `#{create} | pandoc -t html`
 json = {
   msgtype: 'm.text',
   body: body,
