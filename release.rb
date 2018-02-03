@@ -3,7 +3,7 @@
 require 'json'
 
 create = "./create.rb #{ARGV.join ' '}"
-system "#{create} | pandoc -s -t html >index.html"
+system "#{create} | pandoc -s -t html -B mine.html >index.html"
 
 body = `lynx -dump -width=40 index.html`
 body = "-name\n" + body
