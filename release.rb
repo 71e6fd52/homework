@@ -24,7 +24,7 @@ uri += `uuidgen`.strip
 uri += '?access_token=' + @access_token
 tmp = `mktemp`.chomp
 File.open(tmp, 'w') { |f| f.puts json }
-system "curl --verbose -X PUT -d @#{tmp} #{uri}"
+# system "curl --verbose -X PUT -d @#{tmp} #{uri}"
 system "rm -f #{tmp}"
 
 system 'git add .'
