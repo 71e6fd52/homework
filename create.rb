@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 cname = {
   'C' => '语文：',
@@ -61,13 +62,25 @@ def put_head
   puts Time.now.strftime('# %Y年%m月%d日')
 end
 
-def put_end(t = false)
-  puts
-  puts '----'
-  puts '联合甩®荣誉出品', nil if t
-  puts '本作品通过 ' \
-    '[The GNU Affero General Public License]' \
-    '(http://www.gnu.org/licenses/agpl.html) 许可。'
+def put_end
+  puts nil, '----', nil
+  puts <<~AGPL
+    homework
+    Copyright (C) 2018 71e6fd52 <https://homework.71e6fd52.ml>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  AGPL
 end
 
 machine = ARGV.include? '-m'
@@ -75,7 +88,6 @@ machine.freeze
 ARGV.delete '-m'
 type = nil
 put_head unless machine
-# puts '1. 带排球' if Time.now.wday == 2
 filename = ARGV.first
 filename ||= Time.now.strftime('%Y%m%d.hw')
 File.open(filename, 'r').each_line do |line|
