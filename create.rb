@@ -65,7 +65,7 @@ end
 def put_end
   puts nil, '----', nil
   puts <<~AGPL
-    homework
+    homework<br>
     Copyright (C) 2018 71e6fd52 <https://homework.71e6fd52.ml>
 
     This program is free software: you can redistribute it and/or modify
